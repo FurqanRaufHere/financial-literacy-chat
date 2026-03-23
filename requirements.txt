@@ -1,0 +1,9 @@
+groq
+python-dotenv
+tenacity
+tiktoken
+rich
+fastapi
+uvicorn
+gunicorn
+streamlit

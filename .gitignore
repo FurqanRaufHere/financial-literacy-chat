@@ -1,0 +1,15 @@
+
+finance/
+__pycache__/
+
+wan/
+.env 
+.devcontainer/
+.vscode/
+
+docs/
+*.md
+*.log
+*.csv
+*.json
+*.xml
