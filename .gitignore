@@ -6,7 +6,6 @@ wan/
 .env 
 .devcontainer/
 .vscode/
-*.md
 *.log
 *.csv
 *.json
