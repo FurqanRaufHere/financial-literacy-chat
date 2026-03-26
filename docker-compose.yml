@@ -1,19 +1,25 @@
-version: "3.9"
-
 services:
   api:
-    # Build the image from the Dockerfile in the current directory
     build: .
-    
-    # Map port 8000 on your laptop to port 8000 inside the container
-    # Format is "host_port:container_port"
     ports:
       - "8000:8000"
-    
-    # Inject environment variables at runtime from your .env file
-    # This is why we excluded .env from the image itself
     env_file:
       - .env
-    
-    # Restart the container automatically if it crashes
     restart: unless-stopped
+    command: >
+      gunicorn src.api:app
+      --workers 3
+      --worker-class uvicorn.workers.UvicornWorker
+      --bind 0.0.0.0:8000
+
+  streamlit:
+    build: .
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: >
+      streamlit run src/web_app.py
+      --server.port=8501
+      --server.address=0.0.0.0
